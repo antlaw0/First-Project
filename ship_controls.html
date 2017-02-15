@@ -1,0 +1,55 @@
+<DOCTYPEHTML>
+<!-- credit for how show slider values: http://webtutsdepot.com/2010/04/24/html-5-slider-input-tutorial/ -->
+
+Engines:  <input type="range" min="0" max="100" value="50" step="5" onchange="showEnginesValue(this.value)" />
+<span id="enginesDisplayValue">50</span>
+
+<br>
+Weapons:  <input type="range" min="0" max="100" value="50" step="5" onchange="showWeaponsValue(this.value)" />
+<span id="weaponsDisplayValue">50</span>
+
+<br>
+Shields:  <input type="range" min="0" max="100" value="50" step="5" onchange="showShieldsValue(this.value)" />
+<span id="shieldsDisplayValue">50</span>
+
+<br>
+Sensors:  <input type="range" min="0" max="100" value="50" step="5" onchange="showSensorsValue(this.value)" />
+<span id="sensorsDisplayValue">50</span>
+
+<script>
+var enginesSlider=document.getElementById("engines");
+var weaponsSlider=document.getElementById("weapons");
+var shieldsSlider=document.getElementById("shields");
+var sensorsSlider=document.getElementById("sensors");
+var enginesValue=enginesSlider.value;
+var displayEnginesValue=document.getElementById("displayEnginesValue");
+displayEnginesValue.innerHTML=enginesValue;
+var maxEnergy=1000;
+var energy= maxEnergy;
+
+function showEnginesValue(newValue)
+{
+	document.getElementById("enginesDisplayValue").innerHTML=newValue;
+}
+
+
+function showWeaponsValue(newValue)
+{
+	document.getElementById("weaponsDisplayValue").innerHTML=newValue;
+}
+
+function showShieldsValue(newValue)
+{
+	document.getElementById("shieldsDisplayValue").innerHTML=newValue;
+}
+
+
+function showSensorsValue(newValue)
+{
+	document.getElementById("sensorsDisplayValue").innerHTML=newValue;
+}
+
+
+</script>
+
+</html>
