@@ -1,0 +1,4 @@
+Items:
+Ore/crystals - used to provide extra energy reserves, can also be traded as a good
+Luxury items- only sold as high value trade good
+Torpedo?- at start of combat, choose how many you want to use, increases likelyhood of victory.

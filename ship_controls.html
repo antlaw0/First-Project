@@ -1,6 +1,24 @@
 <DOCTYPEHTML>
+<body>
+<link rel="stylesheet" type="text/css" href="style.css">
+
 <!-- credit for how show slider values: http://webtutsdepot.com/2010/04/24/html-5-slider-input-tutorial/ -->
 
+<table>
+<tr>
+<td>
+<canvas id="canvas" height="500" width="500">
+
+</td>
+<td>
+<p id="info"> Info </p>
+</td>
+</tr>
+<tr>
+<td>
+<center> Ship Sub-systems </center>
+<p id="displayHealth"> </p>
+<p id="displayEnergyValue"> Available Energy:  1000/1000 </p>
 Engines:  <input type="range" min="0" max="100" value="50" step="5" onchange="showEnginesValue(this.value)" />
 <span id="enginesDisplayValue">50</span>
 
@@ -15,41 +33,35 @@ Shields:  <input type="range" min="0" max="100" value="50" step="5" onchange="sh
 <br>
 Sensors:  <input type="range" min="0" max="100" value="50" step="5" onchange="showSensorsValue(this.value)" />
 <span id="sensorsDisplayValue">50</span>
+<p id="totalEnergy"> </p>
+</td>
+</tr>
+<tr>
+<td>
+<center> Cargo Manifest </center>
+<table>
+<tr>
+<th>Name </th>
+<th>Quantity </th>
+<th>Description</th>
+</tr>
+<tr>
+<td>Ore</td>
+<td>0</td>
+<td>Can be sold as trade good or converted to fuel</td>
+</tr>
+<tr>
+<td>Luxury Items</td>
+<td>0</td>
+<td>Trade good.</td>
 
-<script>
-var enginesSlider=document.getElementById("engines");
-var weaponsSlider=document.getElementById("weapons");
-var shieldsSlider=document.getElementById("shields");
-var sensorsSlider=document.getElementById("sensors");
-var enginesValue=enginesSlider.value;
-var displayEnginesValue=document.getElementById("displayEnginesValue");
-displayEnginesValue.innerHTML=enginesValue;
-var maxEnergy=1000;
-var energy= maxEnergy;
+</table>
+</td>
+</tr>
+</table>
 
-function showEnginesValue(newValue)
-{
-	document.getElementById("enginesDisplayValue").innerHTML=newValue;
-}
+</body>
 
-
-function showWeaponsValue(newValue)
-{
-	document.getElementById("weaponsDisplayValue").innerHTML=newValue;
-}
-
-function showShieldsValue(newValue)
-{
-	document.getElementById("shieldsDisplayValue").innerHTML=newValue;
-}
-
-
-function showSensorsValue(newValue)
-{
-	document.getElementById("sensorsDisplayValue").innerHTML=newValue;
-}
-
-
-</script>
-
+<script src="my_script.js"></script> 
+<
 </html>
