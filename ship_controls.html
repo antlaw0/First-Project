@@ -12,27 +12,45 @@
 </td>
 <td>
 <p id="info"> Info </p>
+<button id="goButton"> Set course </button>
 </td>
 </tr>
 <tr>
 <td>
-<center> Ship Sub-systems </center>
+<center> Ship Status</center>
 <p id="displayHealth"> </p>
 <p id="displayEnergyValue"> Available Energy:  1000/1000 </p>
-Engines:  <input type="range" min="0" max="100" value="50" step="5" onchange="showEnginesValue(this.value)" />
-<span id="enginesDisplayValue">50</span>
+<table>
+<tr>
+<th>Sub-system</th>
+<th>Rating</th>
+<th>Power Control</th>
+<th>Power Level</th>
+<th>Energy <br>to be used</th>
+</tr>
+<tr>
+<td>Engines</td><td>  <span id="enginesRating"> 100 </span></td> <td><input type="range" min="0" max="100" value="50" step="5" onchange="showEnginesValue(this.value)" /></td>
+<td><span id="enginesDisplayValue">50</span>%</td><td><span id="enginesModifiedRating"> </span></td>
 
-<br>
-Weapons:  <input type="range" min="0" max="100" value="50" step="5" onchange="showWeaponsValue(this.value)" />
-<span id="weaponsDisplayValue">50</span>
 
-<br>
-Shields:  <input type="range" min="0" max="100" value="50" step="5" onchange="showShieldsValue(this.value)" />
-<span id="shieldsDisplayValue">50</span>
+</tr>
+<tr>
+<td>Weapons</td><td>  <span id="weaponsRating"> 100 </span> </td> <td><input type="range" min="0" max="100" value="50" step="5" onchange="showWeaponsValue(this.value)" /></td>
+<td><span id="weaponsDisplayValue">50</span>%</td><td><span id="weaponsModifiedRating"> </span></td>
 
-<br>
-Sensors:  <input type="range" min="0" max="100" value="50" step="5" onchange="showSensorsValue(this.value)" />
-<span id="sensorsDisplayValue">50</span>
+</tr>
+<tr>
+
+<td>Shields</td><td>  <span id="shieldsRating"> 100 </span></td><td><input type="range" min="0" max="100" value="50" step="5" onchange="showShieldsValue(this.value)" /></td>
+<td><span id="shieldsDisplayValue">50</span>%</td><td><span id="shieldsModifiedRating"> </span></td>
+
+
+</tr>
+<tr>
+<td>Sensors</td><td>  <span id="sensorsRating"> 100 </span></td><td><input type="range" min="0" max="100" value="50" step="5" onchange="showSensorsValue(this.value)" /></td>
+<td><span id="sensorsDisplayValue">50</span>%</td><td><span id="sensorsModifiedRating"></span></td>
+</tr>
+</table>
 <p id="totalEnergy"> </p>
 </td>
 </tr>

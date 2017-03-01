@@ -19,7 +19,9 @@ padding: 5px;
 margin: 5px;
 
 }
-
+.control{
+text-align: center;
+}
 canvas{
 background-color: black;
 border-style: solid;
