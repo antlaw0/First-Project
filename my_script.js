@@ -31,11 +31,12 @@ function mousePos()
 
 
 canvas.addEventListener('click', showInfo);
-var Location = function(n, description, x, y, color, energyCost) {
+var Location = function(n, description, link, x, y, color, energyCost) {
   this.name = n;
 this.x=x;
 this.y=y;
 this.description=description;
+this.link=link;
 this.color=color;
 this.energyCost=energyCost;
 drawCircle(this.x, this.y, 5, color);
@@ -45,8 +46,9 @@ drawCircle(this.x, this.y, 5, color);
 };
 
 //initialize all locations
-var Sol = new Location("Sol System", "Human home system. Home to human-kind. Breathable atmosphere.", canvas.width/2, canvas.height/2, "blue", 1);
-var Alpha = new Location("Alpha Centauri", "Nearest star system to Earth. Consists of three stars, Alpha, Beta, and Proxima.", canvas.width/2+30, canvas.height/2+30, "red", 2);
+var Sol = new Location("Sol System", "Human home system. Home to human-kind. Breathable atmosphere.", "https://en.wikipedia.org/wiki/Sun", canvas.width/2, canvas.height/2, "blue", 2);
+var Alpha = new Location("Alpha Centauri System", "Nearest star system to Earth. Consists of three stars, Alpha, Beta, and Proxima. Hosts Moderately sized trading outpost.", "https://en.wikipedia.org/wiki/Alpha_Centauri", canvas.width/2+30, canvas.height/2+30, "red", 4);
+var Wolf=new Location("Wolf 359", "Red dwarf, part of the Leo constellation. A small outpost can be found here for trading.", "https://en.wikipedia.org/wiki/Wolf_359", canvas.width/2-55, canvas.height/2-55, "orange", 5); 
 var currentLocation=Sol;
 
 var ship = function() {
@@ -61,7 +63,7 @@ var ship = new ship();
 
 
 //set initial HTML of the info area
-infoArea.innerHTML=Sol.name+"<br>"+Sol.description;
+infoArea.innerHTML="<h2>"+Sol.name+"</h2><br>"+Sol.description+"<br> <a href="+Sol.link+"> Go to Wikipedia page </a>";
 
 function showInfo()
 {
@@ -75,12 +77,12 @@ if (mx > all_locations[i].x-clickBox && mx < all_locations[i].x+clickBox)
 if (my > all_locations[i].y-clickBox && my < all_locations[i].y+clickBox)
 
 {
+audio.src="beep.wav";
+audio.play();
 l=all_locations[i];
 selectedLocation=l;
-infoArea.innerHTML=l.name+
-"<br>"+
-l.description+"<br>Distance from current position: "+parseInt(getDistance(ship.x, ship.y, l.x, l.y))+" parsecs"+
-"<br> Cost to refuel: "+parseInt(l.energyCost)+" credits per unit";
+infoArea.innerHTML="<h2>"+l.name+"</h2><br>"+l.description+"<br>Distance from current position: "+parseInt(getDistance(ship.x, ship.y, l.x, l.y))+" parsecs"+
+"<br> Cost to refuel: "+parseInt(l.energyCost)+" credits per unit"+"<br> <a href="+l.link+"> Go to Wikipedia page </a>";
 
 
 }
@@ -89,6 +91,7 @@ l.description+"<br>Distance from current position: "+parseInt(getDistance(ship.x
 }
 redrawCanvas();	
 }
+
 var credits=100;
 var creditsDisplayArea=document.getElementById("creditsTotal");
 var shipHealth=100;
@@ -228,6 +231,7 @@ var energyConsumption = Math.round(distance*3);
 				currentLocation=selectedLocation;
 				energy-=energyConsumption;
 				updateValues();
+				randomEvent();
 	
 			}
 		
@@ -257,7 +261,7 @@ context.fillText("You are here",ship.x+10, ship.y);
 var i=0;
 for (i=0; i<all_locations.length; i+=1)
 {
-	drawCircle(all_locations[i].x, all_locations[i].y, 10, all_locations[i].color);
+	drawCircle(all_locations[i].x, all_locations[i].y, 5, all_locations[i].color);
 
 }
 
@@ -285,3 +289,76 @@ function buyEnergy()
 	}
 }
 
+
+
+function randomInt(num)
+{
+	//return random integer between 1 and num
+	return Math.floor(Math.random() * num)+1;
+}
+
+function randomEvent()
+{
+//generate random integer between 1 and 100
+var rand = randomInt(100);
+var enginesFactor = enginesScore*(enginesPercent/100)
+var sensorsFactor = sensorsScore*(sensorsPercent/100)
+var shieldsFactor = shieldsScore*(shieldsPercent/100)
+var weaponsFactor = weaponsScore*(weaponsPercent/100)
+
+
+	
+	if (enginesFactor > rand)
+	{
+		if (sensorsFactor > rand)
+		{
+			alert("You spotted a potential threat on your sensors but managed to avoid it.");
+		}
+		else
+		{
+		alert("Your journey was uneventful.");
+			
+		}
+	}
+	else
+	{
+		enemyEncounter(); 
+	}
+}
+
+function enemyEncounter()
+{
+var enginesFactor = enginesScore*(enginesPercent/100)
+var sensorsFactor = sensorsScore*(sensorsPercent/100)
+var shieldsFactor = shieldsScore*(shieldsPercent/100)
+var weaponsFactor = weaponsScore*(weaponsPercent/100)
+
+	var enemyDamage = randomInt(100);
+	var enemyHealth=randomInt(100);
+	var totalDamage= enemyDamage - shieldsFactor;
+	var playerDamage= Math.floor(weaponsFactor+randomInt(weaponsFactor/4));
+	
+	//if damage is below 0, don't want to heal the player
+	if (totalDamage<0)
+	{
+		totalDamage=0;
+	}
+	
+	shipHealth-=totalDamage;
+	audio.src="laser.wav";
+	audio.play();
+	
+	var str = "You encounter a hostile ship! You are forced to defend yourself. Your ship takes "+totalDamage+". You deal "+playerDamage+" to the enemy ship.";
+	var extraString="";
+	if (shipHealth < 0)
+	{
+		extraString = "Your ship is destroyed.";
+	}
+	else
+	{
+		extraString="You survived this encounter.";
+	}
+	
+	alert(str+extraString);
+	updateValues();
+}
