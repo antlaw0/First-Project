@@ -1,23 +1,49 @@
 <DOCTYPEHTML>
+<center>
 <body>
+
 <link rel="stylesheet" type="text/css" href="style.css">
 <h1>SPACE GAME</h1>
 
 <!-- credit for how show slider values: http://webtutsdepot.com/2010/04/24/html-5-slider-input-tutorial/ -->
 
 <table>
+
+
 <tr>
 <td>
 <canvas id="canvas" height="500" width="500">
 
 </td>
+</tr>
+<tr>
 <td>
+<h2>Event Log</h2>
+<p id="actionLog"> 
+You begin your journey at Earth's space dock. The crew is eager to venture out into the great unknown. 
+</p>
+
+</td>
+</tr>
+
+<tr>
+<td>
+<div>
+<h2>Destination Information</h2>
 <p id="info"> Info </p>
 <button id="goButton"> Set course </button>
 <br>
+</div>
 <input type="number" id="howMuchEnergyToBuy"> </input> <button id="buyEnergyButton"> Buy Energy</button>
+
+<input type="number" id="howMuchRepairToBuy"> </input> <button id="buyRepairButton"> Buy Repairs</button>
+
+
 </td>
 </tr>
+
+
+
 <tr>
 <td>
 <center> Ship Status</center>
@@ -66,5 +92,5 @@
 </body>
 
 <script src="my_script.js"></script> 
-<
+</center>
 </html>
